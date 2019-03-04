@@ -10,6 +10,9 @@
 #include <fstream>
 #include <string>
 #include <cstring>
+#include <glm/glm.hpp>
+#include <glm/gtx/transform.hpp>
+#include <glm/gtc/matrix_transform.hpp> 
 //#include "shaders.h"
 using namespace std;
 void processInput(GLFWwindow* window);
@@ -60,7 +63,7 @@ public:
 	unsigned int fragmentShader;
 	//存储 着色器程序
 	unsigned int shaderProgram;
-	
+
 	void drawMyGraph() {
 		FragmentShaderInit();
 		vertexShaderInit();
@@ -204,7 +207,7 @@ private:
 
 		//检测着色编译是否成功
 		int success;
-		char infoLog[50];
+		char infoLog[100];
 		glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
 		if (!success) {
 			glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
@@ -218,7 +221,7 @@ private:
 		glCompileShader(fragmentShader);
 		//检测着色编译是否成功
 		int success;
-		char infoLog[50];
+		char infoLog[100];
 		glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
 		if (!success) {
 			glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
@@ -268,14 +271,39 @@ int main() {
 		std::cout << "Failed to initialize GLAD" << std::endl;
 		return -1;
 	}
-	//4
-	glViewport(0, 0, 800, 600);
-	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+	//class
 	Triangle myTriangle;
 	myTriangle.drawMyGraph();
 	SomeColorTriangle myscTriangle;
 	myscTriangle.drawMyGraph();
-	
+	//MVP
+	// Projection matrix : 45° Field of View, 4 : 3 ratio, display range : 0.1 unit < -> 100 units
+	glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
+
+	// Or, for an ortho camera :
+	//glm::mat4 Projection = glm::ortho(-10.0f,10.0f,-10.0f,10.0f,0.0f,100.0f); // In world coordinates
+
+	// Camera matrix
+	glm::mat4 View = glm::lookAt(
+		glm::vec3(4, 3, 3), // Camera is at (4,3,3), in World Space
+		glm::vec3(0, 0, 0), // and looks at the origin
+		glm::vec3(0, 1, 0)  // Head is up (set to 0,-1,0 to look upside-down)
+	);
+
+	// Model matrix : an identity matrix (model will be at the origin)
+	glm::mat4 Model = glm::mat4(1.0f);
+	// Our ModelViewProjection : multiplication of our 3 matrices
+	glm::mat4 mvp = Projection * View * Model; // Remember, matrix multiplication is the other way around
+	// Get a handle for our "MVP" uniform
+	// Only during the initialisation
+	GLuint MatrixID = glGetUniformLocation(myscTriangle.shaderProgram, "MVP");
+
+
+	//4
+	glViewport(0, 0, 800, 600);
+	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+
+
 	//enter game loop
 	while (!glfwWindowShouldClose(window))
 	{ //输入处理
@@ -287,11 +315,15 @@ int main() {
 
 		// 4. 当我们渲染一个物体时要使用着色器程序
 		glUseProgram(myTriangle.shaderProgram);
+
 		glBindVertexArray(myTriangle.VAO);
 		// 3. 绘制物体
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 		// 4. 当我们渲染一个物体时要使用着色器程序
 		glUseProgram(myscTriangle.shaderProgram);
+		// Send our transformation to the currently bound shader, in the "MVP" uniform
+		// This is done in the main loop since each model will have a different MVP matrix (At least for the M part)
+		glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &mvp[0][0]);
 		glBindVertexArray(myscTriangle.VAO);
 		// 3. 绘制物体
 		glDrawArrays(GL_TRIANGLES, 0, 3);
