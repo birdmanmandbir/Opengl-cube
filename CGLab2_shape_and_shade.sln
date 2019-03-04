@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CGLab2_shape_and_shade", "CGLab2_shape_and_shade\CGLab2_shape_and_shade.vcxproj", "{1E67231F-D6ED-4552-8400-4FE8BD206B74}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Work1", "Work1\Work1.vdproj", "{DDA27503-65ED-44FA-84DD-81F25D2D459E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1E67231F-D6ED-4552-8400-4FE8BD206B74}.Debug|x64.ActiveCfg = Debug|x64
+		{1E67231F-D6ED-4552-8400-4FE8BD206B74}.Debug|x64.Build.0 = Debug|x64
+		{1E67231F-D6ED-4552-8400-4FE8BD206B74}.Debug|x86.ActiveCfg = Debug|Win32
+		{1E67231F-D6ED-4552-8400-4FE8BD206B74}.Debug|x86.Build.0 = Debug|Win32
+		{1E67231F-D6ED-4552-8400-4FE8BD206B74}.Release|x64.ActiveCfg = Release|x64
+		{1E67231F-D6ED-4552-8400-4FE8BD206B74}.Release|x64.Build.0 = Release|x64
+		{1E67231F-D6ED-4552-8400-4FE8BD206B74}.Release|x86.ActiveCfg = Release|Win32
+		{1E67231F-D6ED-4552-8400-4FE8BD206B74}.Release|x86.Build.0 = Release|Win32
+		{DDA27503-65ED-44FA-84DD-81F25D2D459E}.Debug|x64.ActiveCfg = Debug
+		{DDA27503-65ED-44FA-84DD-81F25D2D459E}.Debug|x86.ActiveCfg = Debug
+		{DDA27503-65ED-44FA-84DD-81F25D2D459E}.Release|x64.ActiveCfg = Release
+		{DDA27503-65ED-44FA-84DD-81F25D2D459E}.Release|x86.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {33200A37-1220-41AB-85B7-704939197146}
+	EndGlobalSection
+EndGlobal
