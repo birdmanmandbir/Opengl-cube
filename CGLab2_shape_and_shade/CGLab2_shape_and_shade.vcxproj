@@ -126,7 +126,7 @@
     </None>
     <ClCompile Include="源.cpp" />
     <None Include="someColorShader.frag" />
-    <None Include="someColorShader.vert" />
+    <None Include="someColorShader_MVP.vert" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shader.frag">

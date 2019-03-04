@@ -26,10 +26,10 @@
     <None Include="shader.frag">
       <Filter>源文件</Filter>
     </None>
-    <None Include="someColorShader.vert">
+    <None Include="someColorShader.frag">
       <Filter>源文件</Filter>
     </None>
-    <None Include="someColorShader.frag">
+    <None Include="someColorShader_MVP.vert">
       <Filter>源文件</Filter>
     </None>
   </ItemGroup>

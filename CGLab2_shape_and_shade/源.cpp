@@ -20,7 +20,7 @@ char* readTheFile(string strSource);
 const char* fragmentShaderSource = readTheFile("shader.frag");
 const char* vertexShaderSource = readTheFile("shader.vert");
 const char* scfragmentShaderSource = readTheFile("someColorShader.frag");
-const char* scvertexShaderSource = readTheFile("someColorShader.vert");
+const char* scvertexShaderSource = readTheFile("someColorShader_MVP.vert");
 
 
 void framebuffer_size_callback(GLFWwindow* windows, int width, int height) {
