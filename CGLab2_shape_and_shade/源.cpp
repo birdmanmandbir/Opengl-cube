@@ -318,7 +318,7 @@ int main() {
 
 	// Camera matrix
 	glm::mat4 View = glm::lookAt(
-		glm::vec3(4, 4, 4), // Camera is at (4,3,3), in World Space
+		glm::vec3(-4, -4, -4), // Camera is at (4,3,3), in World Space
 		glm::vec3(0, 0, 0), // and looks at the origin
 		glm::vec3(2, -1, 0)  // Head is up (set to 0,-1,0 to look upside-down)
 	);
@@ -327,6 +327,10 @@ int main() {
 	glm::mat4 Model = glm::mat4(1.0f);
 	// Our ModelViewProjection : multiplication of our 3 matrices
 	glm::mat4 mvp = Projection * View * Model; // Remember, matrix multiplication is the other way around
+	// Enable depth test
+	glEnable(GL_DEPTH_TEST);
+	// Accept fragment if it closer to the camera than the former one
+	glDepthFunc(GL_LESS);
 	// Get a handle for our "MVP" uniform
 	// Only during the initialisation
 	GLuint MatrixID = glGetUniformLocation(myscTriangle.shaderProgram, "MVP");
@@ -344,7 +348,7 @@ int main() {
 
 		//渲染指令
 		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT| GL_DEPTH_BUFFER_BIT);
 
 		//// 4. 当我们渲染一个物体时要使用着色器程序
 		//glUseProgram(myTriangle.shaderProgram);
