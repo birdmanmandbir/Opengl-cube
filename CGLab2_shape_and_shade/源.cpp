@@ -28,8 +28,8 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 void processInput(GLFWwindow *window);
 // settings
-const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 600;
+const unsigned int SCR_WIDTH = 1920;
+const unsigned int SCR_HEIGHT = 1080;
 //old
 char* readTheFile(string strSource);
 // camera
@@ -82,11 +82,12 @@ int main() {
 	glEnable(GL_DEPTH_TEST);
 	Shader ourShader("model_loading.vs", "model_loading.fs");
 	Model ourModel("nanosuit/nanosuit.obj");
+	//Model ourModel("tuna fish/Ikan Tongkol.obj");
 	glDepthFunc(GL_LESS);
 
 
 	//4
-	glViewport(0, 0, 800, 600);
+	//glViewport(0, 0, 1920, 1080);
 
 
 	//enter game loop
@@ -95,7 +96,7 @@ int main() {
 		// per-frame time logic
 		// --------------------
 		float currentFrame = glfwGetTime();
-		deltaTime = currentFrame - lastFrame;
+		deltaTime = 0.3*(currentFrame - lastFrame);//FPS??
 		lastFrame = currentFrame;
 
 		// ‰»Î¥¶¿Ì
@@ -141,7 +142,7 @@ void processInput(GLFWwindow *window)
 		camera.ProcessKeyboard(BACKWARD, deltaTime);
 	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
 		camera.ProcessKeyboard(LEFT, deltaTime);
-	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
 		camera.ProcessKeyboard(RIGHT, deltaTime);
 }
 
