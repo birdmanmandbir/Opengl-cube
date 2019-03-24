@@ -20,17 +20,23 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shader.vert">
-      <Filter>源文件</Filter>
+    <None Include="model_loading.vs">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="model_loading.fs">
+      <Filter>资源文件</Filter>
     </None>
     <None Include="shader.frag">
-      <Filter>源文件</Filter>
+      <Filter>资源文件</Filter>
     </None>
     <None Include="someColorShader.frag">
-      <Filter>源文件</Filter>
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="shader.vert">
+      <Filter>资源文件</Filter>
     </None>
     <None Include="someColorShader_MVP.vert">
-      <Filter>源文件</Filter>
+      <Filter>资源文件</Filter>
     </None>
   </ItemGroup>
 </Project>
